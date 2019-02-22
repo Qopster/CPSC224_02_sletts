@@ -1,6 +1,6 @@
 import javax.swing.*; // Needed for Swing classes
-import java.awt.*;    // Needed for BorderLayout class
 import java.awt.event.*;
+import java.awt.*;    // Needed for BorderLayout class
 
 /**
    This class demonstrates the BorderLayout manager.
@@ -10,27 +10,6 @@ public class TicTacToe extends JFrame
 {
 	private final int WINDOW_WIDTH = 400;   // Window width
 	private final int WINDOW_HEIGHT = 300;  // Window height
-	
-	private JPanel game;
-	private JPanel topRow;
-	
-	private JPanel NE;
-	private JPanel NC;
-	private JPanel NW;
-	
-	private JPanel midRow;
-	
-	private JPanel CE;
-	private JPanel CC;
-	private JPanel CW;
-	
-	private JPanel botRow;
-	
-	private JPanel SE;
-	private JPanel SC;
-	private JPanel SW;
-	
-	private JLabel test;
 	
 	private JButton button1;    // Button 1
 	private JButton button2;    // Button 2
@@ -61,23 +40,6 @@ public class TicTacToe extends JFrame
 
 		// Add a BorderLayout manager to the content pane.
 		setLayout(new BorderLayout());
-	  
-		game = new JPanel();
-		
-		topRow = new JPanel();
-		NW = new JPanel();
-		NC = new JPanel();
-		NE = new JPanel();
-		
-		midRow = new JPanel();
-		CW = new JPanel();
-		CC = new JPanel();
-		CE = new JPanel();
-		
-		botRow = new JPanel();
-		SW = new JPanel();
-		SC = new JPanel();
-		SE = new JPanel();
 		
 		JButton button1 = new JButton("");
 		button1.setPreferredSize(new Dimension(40,40));
@@ -135,32 +97,78 @@ public class TicTacToe extends JFrame
 		add(button9);
 		
 		setLayout(new GridLayout(3, 3));
-		// Display the window.
-		//pack();
 		setVisible(true);
-		
+	}
+
+	public void checkForWinner(){
+		//For all possible wins in rows
+		if(button1.getText().equals(button2.getText()) &&  button2.getText().equals(button3.getText())){
+			
+		}
+		else if(button4.getText().equals(button5.getText()) &&  button5.getText().equals(button6.getText())){
+			
+		}
+		else if(button7.getText().equals(button8.getText()) &&  button8.getText().equals(button9.getText())){
+			
+		}
+		//For al possible wins in collumns 
+		else if(button1.getText().equals(button4.getText()) &&  button4.getText().equals(button7.getText())){
+			
+		}
+		else if(button2.getText().equals(button5.getText()) &&  button5.getText().equals(button8.getText())){
+			
+		}
+		else if(button3.getText().equals(button6.getText()) &&  button6.getText().equals(button9.getText())){
+			
+		}
+		//For all possible wins across at diagonals
+		else if(button1.getText().equals(button5.getText()) &&  button5.getText().equals(button9.getText())){
+			
+		}
+		else if(button3.getText().equals(button5.getText()) &&  button5.getText().equals(button7.getText())){
+			
+		}
+		//if the board is full and there is no winner
+		//else if(!button1.getText().equals("") && !button2.getText().equals("") && !button3.getText().equals("") && 
+		//		!button4.getText().equals("") && !button5.getText().equals("") && !button6.getText().equals("") && 
+		//		!button7.getText().equals("") && !button8.getText().equals("") && !button9.getText().equals("")){
+		//		JOptionPane.showMessageDialog(null, "Sorry no winners. New game!");
+		//clearPannel(); 
+		//	}
+	}
+	public void clearPannel(){
+		button1.setText("");
+		button2.setText("");
+		button3.setText("");
+		button4.setText("");
+		button5.setText("");
+		button6.setText("");
+		button7.setText("");
+		button8.setText("");
+		button9.setText("");
 	}
 	private class ButtonListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			JButton selected = (JButton)e.getSource();
-			if( turn % 2 == 1){
-				selected.setText("X");
+			String selected = ((JButton)e.getSource()).getText();
+			JButton Bselect = (JButton)e.getSource();
+			if( turn % 2 == 1 && selected == ""){
+				Bselect.setText("X");
+			}
+			else if( turn % 2 == 0 && selected == ""){
+				Bselect.setText("O");
 			}
 			else{
-				selected.setText("O");
+				turn--;
 			}
 			turn++;
 		}
-		
 	}
-	
 	/**
 		The main method creates an instance of the TicTacToe
 		class, causing it to display its window.
 	*/
-   
 	public static void main(String[] args)
 	{
 		new TicTacToe();
