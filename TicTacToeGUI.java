@@ -14,19 +14,9 @@ public class TicTacToeGUI extends JFrame
         
         playerPanel = new playerPanels();
         
-        
-        buildPlayerPanel();
-        
         add(playerPanel, BorderLayout.NORTH);
         
         pack();
         setVisible(true);
     }
-    
-     private void buildPlayerPanel()
-     {
-         
-         
-     }
-    
 }

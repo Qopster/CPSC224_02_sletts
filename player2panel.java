@@ -43,6 +43,7 @@ public class player2panel extends JPanel
     public void iterateWins()
     {
         wins++;
+        winsField.setText(Integer.toString(wins));
     }
     public int getWins()
     {
@@ -51,6 +52,7 @@ public class player2panel extends JPanel
     public void iterateLosses()
     {
         losses++;
+        lossField.setText(Integer.toString(losses));
     }
     public int getLosses()
     {
