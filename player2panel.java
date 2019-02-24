@@ -1,3 +1,5 @@
+//Panel for second player
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -31,7 +33,7 @@ public class player2panel extends JPanel
         lossField.setText("0");
         lossField.setEditable(false);
         
-        setBorder(BorderFactory.createTitledBorder("Player 2 (X):"));
+        setBorder(BorderFactory.createTitledBorder("Player 2 (O):"));
         add(nameLabel);
         add(nameField);
         add(winsLabel);
@@ -58,5 +60,29 @@ public class player2panel extends JPanel
     {
         return losses;
     }
+    public void resetWL_2()
+    {
+        wins = 0;
+        losses = 0;
+        winsField.setText("0");
+        lossField.setText("0");
+    }
+    public void disableText()
+    {
+        nameField.setEditable(false);
+    }
+    public void enableText()
+    {
+        nameField.setEditable(true);
+    }
+    public void resetName()
+    {
+        nameField.setText("");
+    }
+    public String getName()
+    {
+        return nameField.getText();
+    }
     
 }
+

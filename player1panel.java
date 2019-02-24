@@ -1,5 +1,8 @@
+//Panel for the first player in the tic-tac-toe
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class player1panel extends JPanel
 {
@@ -56,5 +59,27 @@ public class player1panel extends JPanel
     {
         return losses;
     }
-    
+    public void resetWL_1()
+    {
+        wins = 0;
+        losses = 0;
+        winsField.setText("0");
+        lossField.setText("0");
+    }
+    public void disableText()
+    {
+        nameField.setEditable(false);
+    }
+    public void enableText()
+    {
+        nameField.setEditable(true);
+    }
+    public void resetName()
+    {
+        nameField.setText("");
+    }
+    public String getName()
+    {
+        return nameField.getText();
+    }
 }

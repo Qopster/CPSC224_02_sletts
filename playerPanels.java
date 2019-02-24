@@ -1,3 +1,6 @@
+//Panel which combines the two player panels into a single panel
+//and adds member functions
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -46,5 +49,33 @@ public class playerPanels extends JPanel
     public int getLosses_p2()
     {
         return p2.getLosses();
+    }
+    public void resetWL()
+    {
+        p1.resetWL_1();
+        p2.resetWL_2();
+    }
+    public void disableNameText()
+    {
+        p1.disableText();
+        p2.disableText();
+    }
+    public void enableNameText()
+    {
+        p1.enableText();
+        p2.enableText();
+    }
+    public void clearNames()
+    {
+        p1.resetName();
+        p2.resetName();
+    }
+    public String getName_p1()
+    {
+        return p1.getName();
+    }
+    public String getName_p2()
+    {
+        return p2.getName();
     }
 }
