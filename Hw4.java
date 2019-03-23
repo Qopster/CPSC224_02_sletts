@@ -1,6 +1,6 @@
-//Maximillian Marciel
-//In-class assignment #6
-//DrawBoxes.java
+//Maximillian Marciel & Sean Letts
+//Hw4
+//Hw4.java
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -42,7 +42,7 @@ public class Hw4 extends JFrame
     super.paint(g);
       
     int screenCenter = 300;
-    double factor = 0.25;
+    double factor = 0.3;
     int distanceX = currentX - screenCenter;
     int distanceY = currentY - screenCenter;
     double cordY = factor * distanceY;
@@ -54,10 +54,9 @@ public class Hw4 extends JFrame
 	double grassFactor;
 	double GrassY;
 	double GrassX;
-	g.setColor(Color.green);
+	g.setColor(Color.green.darker());
 	g.fillRect(icordX + -200, icordY + 500, 1000, 1000);
 	//makes the grass blades
-	g.setColor(Color.green);
 	int startingGrassX = -200;
 	while(startingGrassX < 1000){
 		g.fillRect(icordX + startingGrassX, icordY + 490, 5, 10);
@@ -65,9 +64,9 @@ public class Hw4 extends JFrame
 	}
 	//makes a tree
 	Color brown = new Color(165, 113, 78);
-	g.setColor(brown);
+	g.setColor(brown.darker());
 	g.fillRect(icordX + 533, icordY + 450, 25, 100);
-	g.setColor(Color.green.darker());
+	g.setColor(Color.green.darker().darker());
 	g.fillOval(icordX + 500, icordY + 400, 100, 100);
 	//makes the tree's apples
 	g.setColor(Color.red);
