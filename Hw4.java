@@ -30,6 +30,7 @@ public class Hw4 extends JFrame
       addMouseListener(new MyMouseListener());
       addMouseMotionListener(new MyMouseMotionListener());
       setVisible(true);
+      setResizable(false);
    }
    
    /**
@@ -43,27 +44,77 @@ public class Hw4 extends JFrame
       super.paint(g);
       
       //Screen center and size
-      int screenCenter = screenSize/2;
-      int distanceX = currentX - screenCenter;
-      int distanceY = currentY - screenCenter;
+      final int SCREEN_CENTER = screenSize/2;
+      int distanceX = currentX - SCREEN_CENTER;
+      int distanceY = currentY - SCREEN_CENTER;
       
       //Colors
       Color pale = new Color(250, 250, 250);
-      
-      //Shape 1 (Background moon)
-      double factor1 = 0.02;
-      double cordY1 = factor1 * distanceY;
-      double cordX1 = factor1 * distanceX;
-      int icordX1 = (int) cordX1;
-      int icordY1 = (int) cordY1;
+      Color nightSky = new Color(10,10,75);
+      Color backMtn = new Color(255,0,0);
       
       //Draw unmoving background (Night sky)
-      g.setColor(new Color(10,10,75));
+      g.setColor(nightSky);
       g.fillRect(0, 0, screenSize, screenSize);
       
+      //Draw the shapes
+      drawMoon(distanceX, distanceY, g, pale);
+      drawBackMtn(distanceX, distanceY, g, Color.gray.darker());
+      drawMidMtn(distanceX, distanceY, g, Color.orange.darker());
+      drawFrontMtn(distanceX, distanceY, g, Color.red.darker());
+      
+      
+   }
+   
+   private void drawMoon(int distanceX, int distanceY, Graphics g, Color c)
+   {
+      double factor = 0.02;
+      double cordY = factor * distanceY;
+      double cordX = factor * distanceX;
+      int icordX = (int) cordX;
+      int icordY = (int) cordY;
       // Draw shape 1 (moon)
-      g.setColor(pale);
-      g.fillOval(icordX1 + 400, icordY1 + 90, 75, 75);
+      g.setColor(c);
+      g.fillOval(icordX + 400, icordY + 90, 75, 75);
+   }
+   
+   private void drawBackMtn(int distanceX, int distanceY, Graphics g, Color c)
+   {
+      double factor = 0.1;
+      double cordY = factor * distanceY;
+      double cordX = factor * distanceX;
+      int icordX = (int) cordX;
+      int icordY = (int) cordY;
+      g.setColor(c);
+      int xValues[] = {icordX + 250, icordX + 500, icordX - 500};
+      int yValues[] = {icordY + 150, icordY + 900, icordY + 900};
+      g.fillPolygon(xValues, yValues, 3);
+   }
+   
+   private void drawMidMtn(int distanceX, int distanceY, Graphics g, Color c)
+   {
+      double factor = 0.15;
+      double cordY = factor * distanceY;
+      double cordX = factor * distanceX;
+      int icordX = (int) cordX;
+      int icordY = (int) cordY;
+      g.setColor(c);
+      int xValues[] = {icordX + 455, icordX + 855, icordX - 155};
+      int yValues[] = {icordY + 200, icordY + 800, icordY + 800};
+      g.fillPolygon(xValues, yValues, 3);
+   }
+   
+   private void drawFrontMtn(int distanceX, int distanceY, Graphics g, Color c)
+   {
+      double factor = 0.20;
+      double cordY = factor * distanceY;
+      double cordX = factor * distanceX;
+      int icordX = (int) cordX;
+      int icordY = (int) cordY;
+      g.setColor(c);
+      int xValues[] = {icordX + 275, icordX + 800, icordX - 300};
+      int yValues[] = {icordY + 350, icordY + 800, icordY + 800};
+      g.fillPolygon(xValues, yValues, 3);
    }
    
    /**
