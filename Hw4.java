@@ -56,18 +56,26 @@ public class Hw4 extends JFrame
 	double GrassX;
 	g.setColor(Color.green);
 	g.fillRect(icordX + -200, icordY + 500, 1000, 1000);
-	
-	g.setColor(Color.red);
-	g.fillRect(icordX + 100, icordY + 500, 10, 10);
-	
+	//makes the grass blades
+	g.setColor(Color.green);
+	int startingGrassX = -200;
+	while(startingGrassX < 1000){
+		g.fillRect(icordX + startingGrassX, icordY + 490, 5, 10);
+		startingGrassX = startingGrassX + 10;
+	}
 	//makes a tree
 	Color brown = new Color(165, 113, 78);
 	g.setColor(brown);
 	g.fillRect(icordX + 533, icordY + 450, 25, 100);
-	g.setColor(Color.green);
+	g.setColor(Color.green.darker());
 	g.fillOval(icordX + 500, icordY + 400, 100, 100);
-	
-	//
+	//makes the tree's apples
+	g.setColor(Color.red);
+	g.fillOval(icordX + 550, icordY + 450, 10, 10);
+	g.fillOval(icordX + 530, icordY + 430, 10, 10);
+	g.fillOval(icordX + 530, icordY + 445, 10, 10);
+	g.fillOval(icordX + 570, icordY + 465, 10, 10);
+	g.fillOval(icordX + 570, icordY + 440, 10, 10);
    }
    
    /**
