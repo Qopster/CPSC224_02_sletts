@@ -51,7 +51,7 @@ public class Hw4 extends JFrame
       int icordY = (int) cordY;
       
       // Draw a rectangle.
-      g.drawRect(icordX + screenCenter, icordY + screenCenter, 200, 200);
+      g.drawRect(icordX + 200, icordY + 200, 200, 200);
    }
    
    /**
