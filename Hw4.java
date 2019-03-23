@@ -15,29 +15,35 @@ import java.awt.Graphics;
 
 public class Hw4 extends JFrame
 {
-   private int currentX = 0; // Mouse cursor's X position
-   private int currentY = 0; // Mouse cursor's Y position
-   private int width = 0;    // The rectangle's width
-   private int height = 0;   // The rectangle's height
-               
-   Hw4()
-   {
-      setTitle("Box Drawer");
-      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      setLayout(new BorderLayout());
-      setSize(600,600);
-      addMouseListener(new MyMouseListener());
-      addMouseMotionListener(new MyMouseMotionListener());
-      setVisible(true);
-   }
+	private int currentX = 0; // Mouse cursor's X position
+	private int currentY = 0; // Mouse cursor's Y position
+	private int width = 0;    // The rectangle's width
+	private int height = 0;   // The rectangle's height
    
-   /**
-      paint method
-      @param g The applet's Graphics object.
-   */
+	private boolean mousePressed;
+	private boolean mouseClicked;
+	private boolean mouseReleased;
+	private boolean mouseEntered;
+	private boolean mouseExited;
    
-   public void paint(Graphics g)
-   {
+	Hw4()
+	{
+		setTitle("HW4 Sean and Max");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(new BorderLayout());
+		setSize(600,600);
+		addMouseListener(new MyMouseListener());
+		addMouseMotionListener(new MyMouseMotionListener());
+		setVisible(true);
+	}
+   
+	/**
+		paint method
+		@param g The applet's Graphics object.
+	*/
+   
+	public void paint(Graphics g)
+	{
       // Call the superclass's paint method.
     super.paint(g);
       
@@ -75,63 +81,96 @@ public class Hw4 extends JFrame
 	g.fillOval(icordX + 530, icordY + 445, 10, 10);
 	g.fillOval(icordX + 570, icordY + 465, 10, 10);
 	g.fillOval(icordX + 570, icordY + 440, 10, 10);
-   }
+	//if Statements for if the mouse is messed with
+	if(mousePressed){
+		g.setColor(Color.red);
+		g.fillOval(currentX, currentY, 10, 10);
+		mousePressed = false;
+	}
+	if(mouseClicked){
+		g.setColor(Color.orange);
+		g.fillOval(currentX, currentY, 10, 10);
+		mouseClicked = false;
+	}
+	if(mouseReleased){
+		g.setColor(Color.black);
+		g.fillOval(currentX, currentY, 10, 10);
+		mouseReleased = false;
+	}
+	if(mouseEntered){
+		System.out.println("You entered the screen. Thanks!");
+		mouseEntered = false;
+	}
+	if(mouseExited){
+		System.out.println("YOU LEFT THE SCREEN! OH NO!");
+		mouseExited = false;
+	}
+	}
    
    /**
       Mouse listener class
    */
 
-   private class MyMouseListener implements MouseListener
-   {
-      public void mousePressed(MouseEvent e)
-      {
-         // Get the mouse cursor coordinates.
-         //currentX = e.getX();
-         //currentY = e.getY();
-         //repaint();
-      }
+	private class MyMouseListener implements MouseListener
+	{
+		public void mousePressed(MouseEvent e)
+		{
+			mousePressed = true;
+			currentX = e.getX();
+			currentY = e.getY();
+			repaint();
+		}
+		public void mouseClicked(MouseEvent e)
+		{
+			mouseClicked = true;
+			currentX = e.getX();
+			currentY = e.getY();
+			repaint();
+		}
 
-      //
-      // The following methods are unused, but still
-      // required by the MouseListener interface.
-      //
+		public void mouseReleased(MouseEvent e)
+		{
+			mouseReleased = true;
+			currentX = e.getX();
+			currentY = e.getY();
+			repaint();
+		}
 
-      public void mouseClicked(MouseEvent e)
-      {
-      }
+		public void mouseEntered(MouseEvent e)
+		{
+			mouseEntered = true;
+			currentX = e.getX();
+			currentY = e.getY();
+			repaint();
+		}
 
-      public void mouseReleased(MouseEvent e)
-      {
-      }
-
-      public void mouseEntered(MouseEvent e)
-      {
-      }
-
-      public void mouseExited(MouseEvent e)
-      {
-      }
-   }
+		public void mouseExited(MouseEvent e)
+		{
+			mouseExited = true;
+			currentX = e.getX();
+			currentY = e.getY();
+			repaint();
+		}
+	}
    
    /**-----------------------------
       Mouse Motion listener class |
    *///----------------------------
 
-   private class MyMouseMotionListener
-                   implements MouseMotionListener
-   {
-      public void mouseDragged(MouseEvent e)
-      {
-      }
-      public void mouseMoved(MouseEvent e)
-      {
-          currentX = e.getX();
-          currentY = e.getY();
-          repaint();
-      }
-   }
-   public static void main(String[] args)
-   {
-      new Hw4();
-   }
+	private class MyMouseMotionListener implements MouseMotionListener
+	{
+		public void mouseDragged(MouseEvent e)
+		{
+		}
+		public void mouseMoved(MouseEvent e)
+		{
+			currentX = e.getX();
+			currentY = e.getY();
+			repaint();
+		}
+	}
+	public static void main(String[] args)
+	{
+		new Hw4();
+	}
 }
