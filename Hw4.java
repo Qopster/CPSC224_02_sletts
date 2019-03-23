@@ -1,4 +1,3 @@
-//Maximillian Marciel
 //In-class assignment #6
 //DrawBoxes.java
 
@@ -62,56 +61,117 @@ public class Hw4 extends JFrame
       drawBackMtn(distanceX, distanceY, g, Color.gray.darker());
       drawMidMtn(distanceX, distanceY, g, Color.orange.darker());
       drawFrontMtn(distanceX, distanceY, g, Color.red.darker());
+      drawForeground(distanceX, distanceY, g);
       
       
    }
    
+   //Draws the foreground
+   private void drawForeground(int distanceX, int distanceY, Graphics g)
+   {
+        double factor = 0.3;
+        double cordY = factor * distanceY;
+        double cordX = factor * distanceX;
+        int icordX = (int) cordX;
+        int icordY = (int) cordY;
+	
+	//makes the grass
+	double grassFactor;
+	double GrassY;
+	double GrassX;
+	g.setColor(Color.green.darker());
+	g.fillRect(icordX + -200, icordY + 500, 1000, 1000);
+	//makes the grass blades
+	int startingGrassX = -200;
+	while(startingGrassX < 1000){
+		g.fillRect(icordX + startingGrassX, icordY + 490, 5, 10);
+		startingGrassX = startingGrassX + 10;
+	}
+	//makes a tree
+	Color brown = new Color(165, 113, 78);
+	g.setColor(brown.darker());
+	g.fillRect(icordX + 533, icordY + 450, 25, 100);
+	g.setColor(Color.green.darker().darker());
+	g.fillOval(icordX + 500, icordY + 400, 100, 100);
+	//makes the tree's apples
+	g.setColor(Color.red);
+	g.fillOval(icordX + 550, icordY + 450, 10, 10);
+	g.fillOval(icordX + 530, icordY + 430, 10, 10);
+	g.fillOval(icordX + 530, icordY + 445, 10, 10);
+	g.fillOval(icordX + 570, icordY + 465, 10, 10);
+	g.fillOval(icordX + 570, icordY + 440, 10, 10);
+   }
+   
+   //Draw the moon at the top right
    private void drawMoon(int distanceX, int distanceY, Graphics g, Color c)
    {
+      //Calculating mouse distance based on the factor
       double factor = 0.02;
       double cordY = factor * distanceY;
       double cordX = factor * distanceX;
       int icordX = (int) cordX;
       int icordY = (int) cordY;
-      // Draw shape 1 (moon)
+      
+      //Set the color
       g.setColor(c);
+      
+      // Draw shape 1 (moon)
       g.fillOval(icordX + 400, icordY + 90, 75, 75);
    }
    
+   //Draw the furthest back mountain
    private void drawBackMtn(int distanceX, int distanceY, Graphics g, Color c)
    {
+      //Calculating mouse distance based on the factor
       double factor = 0.1;
       double cordY = factor * distanceY;
       double cordX = factor * distanceX;
       int icordX = (int) cordX;
       int icordY = (int) cordY;
+      
+      //Set the color
       g.setColor(c);
+      
+      //Draw the shape
       int xValues[] = {icordX + 250, icordX + 500, icordX - 500};
       int yValues[] = {icordY + 150, icordY + 900, icordY + 900};
       g.fillPolygon(xValues, yValues, 3);
    }
    
+   //Draw the middle mountain
    private void drawMidMtn(int distanceX, int distanceY, Graphics g, Color c)
    {
+       //Calculating mouse distance based on the factor
       double factor = 0.15;
       double cordY = factor * distanceY;
       double cordX = factor * distanceX;
+      
       int icordX = (int) cordX;
       int icordY = (int) cordY;
+      
+      //Set the color
       g.setColor(c);
+      
+      //Draw the shape
       int xValues[] = {icordX + 455, icordX + 855, icordX - 155};
       int yValues[] = {icordY + 200, icordY + 800, icordY + 800};
       g.fillPolygon(xValues, yValues, 3);
    }
    
+   //Draw the front mountain (Hill?)
    private void drawFrontMtn(int distanceX, int distanceY, Graphics g, Color c)
    {
+      //Calculating mouse distance based on the factor
       double factor = 0.20;
       double cordY = factor * distanceY;
       double cordX = factor * distanceX;
       int icordX = (int) cordX;
       int icordY = (int) cordY;
+      
+      //Set the color
       g.setColor(c);
+      
+      //Draw the shape
       int xValues[] = {icordX + 275, icordX + 800, icordX - 300};
       int yValues[] = {icordY + 350, icordY + 800, icordY + 800};
       g.fillPolygon(xValues, yValues, 3);
@@ -125,10 +185,8 @@ public class Hw4 extends JFrame
    {
       public void mousePressed(MouseEvent e)
       {
-         // Get the mouse cursor coordinates.
          //currentX = e.getX();
          //currentY = e.getY();
-         //repaint();
       }
 
       //
@@ -165,8 +223,10 @@ public class Hw4 extends JFrame
       }
       public void mouseMoved(MouseEvent e)
       {
+          //Get the mouse coordinates
           currentX = e.getX();
           currentY = e.getY();
+          //Repaint every time the mouse moves
           repaint();
       }
    }
