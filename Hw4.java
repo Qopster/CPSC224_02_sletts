@@ -19,13 +19,14 @@ public class Hw4 extends JFrame
    private int currentY = 0; // Mouse cursor's Y position
    private int width = 0;    // The rectangle's width
    private int height = 0;   // The rectangle's height
+   private int screenSize = 600;
                
    Hw4()
    {
       setTitle("Box Drawer");
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setLayout(new BorderLayout());
-      setSize(600,600);
+      setSize(screenSize,screenSize);
       addMouseListener(new MyMouseListener());
       addMouseMotionListener(new MyMouseMotionListener());
       setVisible(true);
@@ -41,17 +42,28 @@ public class Hw4 extends JFrame
       // Call the superclass's paint method.
       super.paint(g);
       
-      int screenCenter = 300;
-      double factor = 0.5;
+      //Screen center and size
+      int screenCenter = screenSize/2;
       int distanceX = currentX - screenCenter;
       int distanceY = currentY - screenCenter;
-      double cordY = factor * distanceY;
-      double cordX = factor * distanceX;
-      int icordX = (int) cordX;
-      int icordY = (int) cordY;
       
-      // Draw a rectangle.
-      g.drawRect(icordX + 200, icordY + 200, 200, 200);
+      //Colors
+      Color pale = new Color(250, 250, 250);
+      
+      //Shape 1 (Background moon)
+      double factor1 = 0.02;
+      double cordY1 = factor1 * distanceY;
+      double cordX1 = factor1 * distanceX;
+      int icordX1 = (int) cordX1;
+      int icordY1 = (int) cordY1;
+      
+      //Draw unmoving background (Night sky)
+      g.setColor(new Color(10,10,75));
+      g.fillRect(0, 0, screenSize, screenSize);
+      
+      // Draw shape 1 (moon)
+      g.setColor(pale);
+      g.fillOval(icordX1 + 400, icordY1 + 90, 75, 75);
    }
    
    /**
