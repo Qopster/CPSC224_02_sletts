@@ -1,6 +1,3 @@
-//In-class assignment #6
-//DrawBoxes.java
-
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -19,6 +16,10 @@ public class Hw4 extends JFrame
    private int width = 0;    // The rectangle's width
    private int height = 0;   // The rectangle's height
    private int screenSize = 600;
+   private boolean mouseExited = false;
+   private boolean mouseEntered = true;
+   private boolean mouseClicked = false;
+   int msCount = 0;
                
    Hw4()
    {
@@ -62,6 +63,42 @@ public class Hw4 extends JFrame
       drawMidMtn(distanceX, distanceY, g, Color.orange.darker());
       drawFrontMtn(distanceX, distanceY, g, Color.red.darker());
       drawForeground(distanceX, distanceY, g);
+      
+      //Handle the mouse events
+      if(mouseClicked){
+		g.setColor(Color.white);
+		g.fillOval(currentX, currentY, 20, 20);
+	}
+	if(mouseEntered){
+		//Set the color to red
+		g.setColor(Color.red);
+		// Draw the rectangle
+		g.fillRect(200, 200, 160, 75);
+		// Set the drawing color to white. 
+		g.setColor(Color.white);
+		// Set the font and write inside
+		g.setFont(new Font("SansSerif", Font.BOLD, 35)); 
+		g.drawString("INSIDE", 225, 250);
+                //Make sure the inside stays for more than 1 frame
+                msCount++;
+                if (msCount >= 100)
+                {
+                    mouseEntered = false;
+                    msCount = 0;
+                }
+	}
+	if(mouseExited){
+		//Set the color to red
+		g.setColor(Color.red);
+		// Draw the rectangle
+		g.fillRect(200, 200, 175, 75);
+		// Set the drawing color to white. 
+		g.setColor(Color.white);
+		// Set the font and write inside
+		g.setFont(new Font("SansSerif", Font.BOLD, 35)); 
+		g.drawString("EXITED", 225, 250);
+		mouseExited = false;
+	}
       
       
    }
@@ -185,17 +222,17 @@ public class Hw4 extends JFrame
    {
       public void mousePressed(MouseEvent e)
       {
-         //currentX = e.getX();
-         //currentY = e.getY();
+         
       }
-
-      //
-      // The following methods are unused, but still
-      // required by the MouseListener interface.
-      //
-
       public void mouseClicked(MouseEvent e)
       {
+          if (!mouseClicked)
+              mouseClicked = true;
+          else
+              mouseClicked = false;
+	  currentX = e.getX();
+	  currentY = e.getY();
+	  repaint();
       }
 
       public void mouseReleased(MouseEvent e)
@@ -204,10 +241,18 @@ public class Hw4 extends JFrame
 
       public void mouseEntered(MouseEvent e)
       {
+          mouseEntered = true;
+          currentX = e.getX();
+	  currentY = e.getY();
+	  repaint();
       }
 
       public void mouseExited(MouseEvent e)
       {
+          mouseExited = true;
+	  currentX = e.getX();
+          currentY = e.getY();
+	  repaint();
       }
    }
    
