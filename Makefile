@@ -1,3 +1,3 @@
 all:
-    javac Hw3.java
-    java Hw3
+    javac Hw4.java
+    java Hw4
