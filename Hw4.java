@@ -20,9 +20,7 @@ public class Hw4 extends JFrame
 	private int width = 0;    // The rectangle's width
 	private int height = 0;   // The rectangle's height
    
-	private boolean mousePressed;
 	private boolean mouseClicked;
-	private boolean mouseReleased;
 	private boolean mouseEntered;
 	private boolean mouseExited;
    
@@ -82,27 +80,33 @@ public class Hw4 extends JFrame
 	g.fillOval(icordX + 570, icordY + 465, 10, 10);
 	g.fillOval(icordX + 570, icordY + 440, 10, 10);
 	//if Statements for if the mouse is messed with
-	if(mousePressed){
-		g.setColor(Color.red);
-		g.fillOval(currentX, currentY, 10, 10);
-		mousePressed = false;
-	}
 	if(mouseClicked){
 		g.setColor(Color.orange);
 		g.fillOval(currentX, currentY, 10, 10);
 		mouseClicked = false;
 	}
-	if(mouseReleased){
-		g.setColor(Color.black);
-		g.fillOval(currentX, currentY, 10, 10);
-		mouseReleased = false;
-	}
 	if(mouseEntered){
-		System.out.println("You entered the screen. Thanks!");
+		//Set the color to red
+		g.setColor(Color.red);
+		// Draw the rectangle
+		g.fillRect(200, 200, 160, 75);
+		// Set the drawing color to white. 
+		g.setColor(Color.white);
+		// Set the font and write inside
+		g.setFont(new Font("SansSerif", Font.BOLD, 35)); 
+		g.drawString("INSIDE", 225, 250);
 		mouseEntered = false;
 	}
 	if(mouseExited){
-		System.out.println("YOU LEFT THE SCREEN! OH NO!");
+		//Set the color to red
+		g.setColor(Color.red);
+		// Draw the rectangle
+		g.fillRect(200, 200, 175, 75);
+		// Set the drawing color to white. 
+		g.setColor(Color.white);
+		// Set the font and write inside
+		g.setFont(new Font("SansSerif", Font.BOLD, 35)); 
+		g.drawString("EXITED", 225, 250);
 		mouseExited = false;
 	}
 	}
@@ -115,10 +119,7 @@ public class Hw4 extends JFrame
 	{
 		public void mousePressed(MouseEvent e)
 		{
-			mousePressed = true;
-			currentX = e.getX();
-			currentY = e.getY();
-			repaint();
+			//was told implimentation not needed
 		}
 		public void mouseClicked(MouseEvent e)
 		{
@@ -130,10 +131,7 @@ public class Hw4 extends JFrame
 
 		public void mouseReleased(MouseEvent e)
 		{
-			mouseReleased = true;
-			currentX = e.getX();
-			currentY = e.getY();
-			repaint();
+			//was told implimentation not needed
 		}
 
 		public void mouseEntered(MouseEvent e)
