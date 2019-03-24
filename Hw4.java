@@ -1,3 +1,9 @@
+//Maximillian Marciel and Sean Letts
+//CPSC224 02: Homework 4
+//This program is an implementation of (most) mouse listeners
+//in addition to a parallax view of a landscape, combined with
+//a flock of birds utilizing the java timer.
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
