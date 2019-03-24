@@ -4,6 +4,7 @@
 //flock of bird made via java timer
 //the rest is developed and drawn and moves depending on the mouse position
 //can be found on https://github.com/Qopster/CPSC224_02_sletts as HW4
+//Max's can also be found on https://github.com/Qopster/CPSC224_02_sletts/tree/Max_HW4 although it's basically the same so mer
 
 
 import javax.swing.*;
