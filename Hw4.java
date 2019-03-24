@@ -3,17 +3,13 @@
 //This program is an implementation of (most) mouse listeners
 //in addition to a parallax view of a landscape, combined with
 //a flock of birds utilizing the java timer.
+//Can be found on https://github.com/Qopster/CPSC224_02_sletts (Sean's Branch)
+//Or on https://github.com/Qopster/CPSC224_02_sletts/tree/Max_HW4 (Max's Branch)
 
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 import java.awt.Graphics;
-
-/**
-   This applet demonstrates how mouse events and mouse
-   motion events can be handled. It lets the user draw
-   boxes by dragging the mouse.
-*/
 
 public class Hw4 extends JFrame implements ActionListener
 {
