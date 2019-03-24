@@ -9,8 +9,9 @@ import java.awt.Graphics;
    boxes by dragging the mouse.
 */
 
-public class Hw4 extends JFrame
+public class Hw4 extends JFrame implements ActionListener
 {
+   //Drawing the parallax
    private int currentX = 0; // Mouse cursor's X position
    private int currentY = 0; // Mouse cursor's Y position
    private int width = 0;    // The rectangle's width
@@ -19,10 +20,35 @@ public class Hw4 extends JFrame
    private boolean mouseExited = false;
    private boolean mouseEntered = true;
    private boolean mouseClicked = false;
-   int msCount = 0;
+   private int msCount = 0;
+   private boolean mouseDragged = false;
+   
+   //Drawing the birds
+   private int delay = 30;
+   private Timer timer;
+   private int birdX = 0;		// x position
+
+   private int dx = 2;		// increment amount (x coord)
+   private int dy = 0;		// increment amount (y coord)
+	
+   private int bird1XValues[] = {-110, -85, -60};
+   private int bird1YValues[] = {50, 60, 50};
+	
+   private int bird2XValues[] = new int[3];
+   private int bird2YValues[] = new int[3];
+	
+   private int bird3XValues[] = new int[3];
+   private int bird3YValues[] = new int[3];
+	
+   private int bird4XValues[] = new int[3];
+   private int bird4YValues[] = new int[3];
+	
+   private int bird5XValues[] = new int[3];
+   private int bird5YValues[] = new int[3];
                
    Hw4()
    {
+      //Initializing the window, and the listeners
       setTitle("Box Drawer");
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setLayout(new BorderLayout());
@@ -31,6 +57,15 @@ public class Hw4 extends JFrame
       addMouseMotionListener(new MyMouseMotionListener());
       setVisible(true);
       setResizable(false);
+      
+      //Initialize timer
+      timer = new Timer(delay, (ActionListener) this);
+      timer.start();
+   }
+   
+   public void actionPerformed(ActionEvent e)
+   {
+	repaint();
    }
    
    /**
@@ -68,8 +103,8 @@ public class Hw4 extends JFrame
       if(mouseClicked){
 		g.setColor(Color.white);
 		g.fillOval(currentX, currentY, 20, 20);
-	}
-	if(mouseEntered){
+      }
+      if(mouseEntered){
 		//Set the color to red
 		g.setColor(Color.red);
 		// Draw the rectangle
@@ -99,8 +134,51 @@ public class Hw4 extends JFrame
 		g.drawString("EXITED", 225, 250);
 		mouseExited = false;
 	}
-      
-      
+        if (mouseDragged) {
+            g.setColor(Color.red);
+            g.fillOval(currentX + 5, currentY + 5, 10, 10);
+            mouseDragged = false;
+        }
+        
+        //Draw a flock of birds
+        g.setColor(Color.red);		
+        // check for boundaries for bird 1
+        if (bird1XValues[0] < getWidth()){	
+        	dx = Math.abs(dx);
+        }
+        if (bird1XValues[0] > getWidth()){		
+            dx = -Math.abs(dx);
+            bird1XValues[0] = -110;
+            bird1XValues[1] = -85;
+            bird1XValues[2] = -60;
+        }
+        // adjust bird position
+        birdX += dx;
+	g.drawPolyline(bird1XValues, bird1YValues, 3);
+	for(int x = 0; x<3; x++){
+            bird1XValues[x] += dx;
+	}
+	for(int x = 0; x<3; x++){
+            bird2XValues[x] = bird1XValues[x] + 20;
+	    bird2YValues[x] = bird1YValues[x] + 20;
+	}
+	for(int x = 0; x<3; x++){
+            bird3XValues[x] = bird1XValues[x] + 40;
+            bird3YValues[x] = bird1YValues[x] + 40;
+	}
+	for(int x = 0; x<3; x++){
+            bird4XValues[x] = bird1XValues[x] + 20;
+            bird4YValues[x] = bird1YValues[x] + 60;
+	}
+	for(int x = 0; x<3; x++){
+            bird5XValues[x] = bird1XValues[x];
+            bird5YValues[x] = bird1YValues[x] + 80;
+	}
+	g.drawPolyline(bird1XValues, bird1YValues, 3);
+	g.drawPolyline(bird2XValues, bird2YValues, 3);
+	g.drawPolyline(bird3XValues, bird3YValues, 3);
+	g.drawPolyline(bird4XValues, bird4YValues, 3);
+	g.drawPolyline(bird5XValues, bird5YValues, 3);
    }
    
    //Draws the foreground
@@ -265,6 +343,10 @@ public class Hw4 extends JFrame
    {
       public void mouseDragged(MouseEvent e)
       {
+          mouseDragged = true;
+          currentX = e.getX();
+          currentY = e.getY();
+          repaint();
       }
       public void mouseMoved(MouseEvent e)
       {
