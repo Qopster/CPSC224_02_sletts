@@ -12,12 +12,6 @@ import java.awt.event.*;
 import java.awt.*;
 import java.awt.Graphics;
 
-/**
-   This applet demonstrates how mouse events and mouse
-   motion events can be handled. It lets the user draw
-   boxes by dragging the mouse.
-*/
-
 public class Hw4 extends JFrame implements ActionListener
 {
    //Drawing the parallax
