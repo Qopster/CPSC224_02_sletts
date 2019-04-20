@@ -1,8 +1,9 @@
+package mypaint;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 
-public class MyPaint extends JFrame {
+public class MyPaint extends JPanel {
 
    //Mouse values
    private int currentX = 0; // Mouse cursor's X position
@@ -11,57 +12,55 @@ public class MyPaint extends JFrame {
    private int shapeY   = 0; //Beginning corner of a shape's drawing (Y)
    
    //Size values
-   private int brushSize = 100; //Size of the brush, to be changed by buttons
+   public int brushSize = 100; //Size of the brush, to be changed by buttons
    
    //Color value
-   private Color currentColor = Color.BLUE;
+   public Color currentColor = Color.BLUE;
    
    //Current drawing mode (default is brushing)
-   private boolean dragBrush    = false;
-   private boolean drawingShape = true;
+   private boolean dragBrush    = true;
+   private boolean drawingShape = false;
    private boolean drawingRect  = false;
-   private boolean fillMode     = true;
-   private boolean drawingOval  = true;
+   private boolean fillMode     = false;
+   private boolean drawingOval  = false;
+   private boolean clear        = false;
    
    MyPaint()
    {
        //Initializing the window, and the listeners
-      setTitle("PaintPal");
-      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setLayout(new BorderLayout());
       setSize(900,900);
       addMouseListener(new MyMouseListener());
       addMouseMotionListener(new MyMouseMotionListener());
       setVisible(true);
-      setResizable(false);
    }
    
-   private void switchToBrushMode()
+   public void switchToBrushMode()
    {
        resetAllSettings();
        dragBrush = true;
    }
    
-   private void switchToFillMode()
+   public void switchToFillMode()
    {
        resetAllSettings();
        drawingShape = true;
        fillMode     = true;
    }
    
-   private void switchToOutlineMode()
+   public void switchToOutlineMode()
    {
        resetAllSettings();
        drawingShape = true;
    }
    
-   private void resetCurrentShape()
+   public void resetCurrentShape()
    {
        drawingRect = false;
-       //More shapes to be added
+       drawingOval = false;
    }
    
-   private void resetAllSettings()
+   public void resetAllSettings()
    {
        dragBrush    = false;
        drawingShape = false;
@@ -72,7 +71,11 @@ public class MyPaint extends JFrame {
    public void paint(Graphics g)
    {
       // Call the superclass's paint method.
-      //super.paint(g);
+      if (clear)
+      {
+          super.paint(g);
+          clear = false;
+      }
        
        //Set the current color
        g.setColor(currentColor);
@@ -173,9 +176,5 @@ public class MyPaint extends JFrame {
       {
       }
    }
-    
-    public static void main(String[] args) {
-        new MyPaint();
-    }
     
 }
